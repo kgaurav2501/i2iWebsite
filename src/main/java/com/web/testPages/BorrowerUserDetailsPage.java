@@ -11,7 +11,6 @@ public class BorrowerUserDetailsPage {
 	public BorrowerUserDetailsPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-
 	}
 
 	// Father first Name
@@ -80,7 +79,7 @@ public class BorrowerUserDetailsPage {
 		Thread.sleep(2000);
 		permanentPinCode.sendKeys(permanent_pin);
 		currenAddress.sendKeys(current_address);
-		//cpinCode.sendKeys(current_pin);
+		// cpinCode.sendKeys(current_pin);
 		Thread.sleep(2000);
 		Thread.sleep(2000);
 		nextBtn.click();

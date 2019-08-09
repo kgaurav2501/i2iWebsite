@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class IndividualInvestorBankDetailsPage {
+import com.util.GenericMethods;
 
+public class IndividualInvestorBankDetailsPage {
+	GenericMethods gm = new GenericMethods();
 //	WebDriver driver;
 	public IndividualInvestorBankDetailsPage(WebDriver driver) {
 //		this.driver=driver;
@@ -46,6 +48,9 @@ public class IndividualInvestorBankDetailsPage {
 
 	@FindBy(xpath = "/html/body/app-root/div/ng-component/section/div/div[2]/div/div/div[3]/div/button[2]")
 	WebElement submitBtn;
+	
+	@FindBy(xpath = "/html/body/app-root/div/ng-component/section/div/div/div/div/div/div/h3/button")
+	WebElement continueLogIn;
 
 	public void enterBankAcDetails(String first_name, String middle_name, String last_name, String ac_no,
 			String ifsc_code, String bank_name, String branch_name, String account_type) throws InterruptedException {
@@ -65,6 +70,8 @@ public class IndividualInvestorBankDetailsPage {
 		uploadCancelCheck.sendKeys("C:\\Users\\i2i funding\\Downloads\\image.png");
 		Thread.sleep(2000);
 		submitBtn.click();
+		gm.explicitWaitUnitlElementNotVisible(continueLogIn);
+		continueLogIn.click();
 	}
 
 }

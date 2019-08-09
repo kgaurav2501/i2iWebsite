@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.util.GenericMethods;
+
 public class Institution_BankAccountDetailsPage {
 	
-WebDriver driver;
+	WebDriver driver;
+	GenericMethods gm = new GenericMethods();
 	
 	public Institution_BankAccountDetailsPage(WebDriver driver) {
 		this.driver = driver;
@@ -51,6 +54,9 @@ WebDriver driver;
 	@FindBy(xpath = "/html/body/app-root/div/ng-component/section/div/div[2]/div/div/div[3]/div/button[2]")
 	WebElement submitBtn;
 	
+	@FindBy(xpath = "/html/body/app-root/div/ng-component/section/div/div/div/div/div/div/h3/button/span")
+	WebElement continueLogIn;
+	
 	
 	public void institutionBankDetails(String first_name, String middle_name, String last_name, String ac_type, String ac_num, String ifsc_num, String bank_name, String branch_name) throws InterruptedException {
 		acHolderFirstName.sendKeys(first_name);
@@ -70,5 +76,7 @@ WebDriver driver;
 		uploadCancelChk.sendKeys("C:\\Users\\i2i funding\\Downloads\\image.png");
 		Thread.sleep(2000);
 		submitBtn.click();
+		gm.explicitWaitUnitlElementNotVisible(continueLogIn);
+		continueLogIn.click();
 	}
 }

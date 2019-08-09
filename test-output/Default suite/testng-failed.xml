@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.web.testCases.BorrowerBasicRgistrationTest">
+      <class name="com.web.testCases.BorrowerDocumentsTest">
         <methods>
           <include name="launchChromebrowser"/>
           <include name="closeBrowser"/>
-          <include name="validationchck"/>
+          <include name="uploadDoc"/>
         </methods>
-      </class> <!-- com.web.testCases.BorrowerBasicRgistrationTest -->
+      </class> <!-- com.web.testCases.BorrowerDocumentsTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

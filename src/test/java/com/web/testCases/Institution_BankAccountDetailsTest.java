@@ -1,7 +1,6 @@
 package com.web.testCases;
 
 import org.testng.annotations.Test;
-
 import com.util.LaunchBrowser;
 import com.web.testPages.Institution_BankAccountDetailsPage;
 import com.web.testPages.Institution_InvestorBasicDetailsPage;
@@ -31,7 +30,7 @@ public class Institution_BankAccountDetailsTest extends LaunchBrowser {
 				"Sector 65");
 
 		LoginPage l = new LoginPage(driver);
-		l.clickSignInBtn();
+		l.clickSignIn();
 		l.login(Institution_InvestorBasicDetailsPage.v.getEmail(), "Test@123");
 	}
 

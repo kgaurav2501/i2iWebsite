@@ -1,75 +1,88 @@
 package com.web.testPages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import com.util.GenericMethods;
+import com.util.LaunchBrowser;
 
 public class LoginPage {
-	
+
 	WebDriver driver;
-	
-	public LoginPage(WebDriver driver) {
-		this.driver=driver;
-	}
 
-	By SignIn  = By.xpath("//*[@id=\"containerNavbar\"]/ul[2]/li[1]/a");
-	
-	By emailID = By.xpath("/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[1]/div[1]/input");
-	
-	By pwd = By.xpath("/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[1]/div[2]/input");
-	
-	By loginBtn = By.xpath("/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[2]/button/span");
-	
-	By clickOnContinueBtn = By.xpath("/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div/h5/div/button/span");
-
-	
 	GenericMethods gm = new GenericMethods();
-	public void clickSignInBtn() {
-		
-		gm.ExplicitWaitVisible(driver.findElement(SignIn), driver);
-		driver.findElement(SignIn).click();
-		
+
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
-	
-	public void  login(String email, String password) {
-		driver.findElement(emailID).sendKeys(email);
-		driver.findElement(pwd).sendKeys(password);
-		driver.findElement(loginBtn).click();
-	}
-	
-	public void enterEmail(String email_id) {
-		driver.findElement(emailID).sendKeys(email_id);
-		
-	}
-	
-	public void enterPwd(String pass) {
-		driver.findElement(pwd).sendKeys(pass);
-		
-	}
-	
-	public void clickLoginBtn() {
-		driver.findElement(loginBtn).click();
-		
-	}
-	
-	public void clickOnContinueBtn() throws InterruptedException {
+
+	@FindBy(xpath = "//*[@id='containerNavbar']/ul[2]/li[1]/a")
+	WebElement SignIn;
+
+	@FindBy(xpath = "/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[1]/div[1]/input")
+	WebElement emailID;
+
+	@FindBy(xpath = "/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[1]/div[2]/input")
+	WebElement pwd;
+
+	@FindBy(xpath = "/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div[2]/div[2]/button")
+	WebElement loginBtn;
+
+	@FindBy(xpath = "/html/body/app-root/div/app-login/section/div/div/div/div/div[1]/div/h5/div/button")
+	WebElement BorrowerClickOnContinueBtn;
+
+	@FindBy(xpath = "//div[@class='navbar-collapse collapse justify-content-between']/ul[2]")
+	WebElement myAccountBtn;
+
+	@FindBy(xpath = "//*[@id=\"containerNavbar\"]/ul[2]/li[1]/div/a[3]")
+	WebElement signOutBtn;
+
+	public void reLogin() throws InterruptedException {
+		gm.explicitWaitUnitlElementNotVisible(myAccountBtn);
 		Thread.sleep(2000);
-		driver.findElement(clickOnContinueBtn).click();
+		myAccountBtn.click();
+		gm.explicitWaitUnitlElementNotVisible(signOutBtn);
+		Thread.sleep(2000);
+		signOutBtn.click();
+		gm.explicitWaitUnitlElementNotVisible(SignIn);
+		Thread.sleep(2000);
+		SignIn.click();
+		login(BorrowerBasicRegistrationPage.save.getEmail(), "Test@123");
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public void clickSignIn() throws InterruptedException {
+		gm.explicitWaitUnitlElementNotVisible(SignIn);
+		Thread.sleep(2000);
+		SignIn.click();
+	}
+
+	public void login(String email, String password) {
+		gm.explicitWaitUnitlElementNotVisible(emailID);
+		emailID.sendKeys(email);
+		pwd.sendKeys(password);
+		gm.explicitWaitUntilElementNotClickable(loginBtn);
+		loginBtn.click();
+	}
+
+	public void enterEmail(String email_id) {
+		emailID.sendKeys(email_id);
+	}
+
+	public void enterPwd(String pass) {
+		pwd.sendKeys(pass);
+	}
+
+	public void clickLoginBtn() {
+		loginBtn.click();
+	}
+
+	public void clickOnContinueBtn() throws InterruptedException {
+		gm.explicitWaitUnitlElementNotVisible(BorrowerClickOnContinueBtn);
+		BorrowerClickOnContinueBtn.click();
+	}
+
 }

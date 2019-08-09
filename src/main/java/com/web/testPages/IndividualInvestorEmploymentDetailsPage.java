@@ -18,6 +18,8 @@ public class IndividualInvestorEmploymentDetailsPage {
 			.xpath("/html/body/app-root/div/ng-component/section/div/div/div/div/div/div[2]/div[1]/div[2]/input");
 	By saveBtn = By.xpath("/html/body/app-root/div/ng-component/section/div/div/div/div/div/div[2]/div[2]/button[1]");
 	By nextBtn = By.xpath("/html/body/app-root/div/ng-component/section/div/div/div/div/div/div[2]/div[2]/button[2]");
+	By titleOfKYCdoc = By.xpath("/html/body/app-root/div/ng-component/section/div/div/div/div/div/div[1]/h1");
+
 
 	public String getTitle() {
 		return driver.findElement(tilteOfEmpDetails).getText();
@@ -34,6 +36,9 @@ public class IndividualInvestorEmploymentDetailsPage {
 
 	public void clickOnNext() {
 		driver.findElement(nextBtn).click();
+	}
+	public String getTitleOfKYCdoc() {
+		return driver.findElement(titleOfKYCdoc).getText();
 	}
 
 }

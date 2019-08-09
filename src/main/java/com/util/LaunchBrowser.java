@@ -3,37 +3,40 @@ package com.util;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-
-import com.web.testPages.LoginPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class LaunchBrowser {
 
 	public static WebDriver driver = null;
-
-	@BeforeSuite
+	
+	@BeforeMethod
 	public void launchChromebrowser() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\i2i funding\\eclipse-workspace\\i2iFundingWebsite\\src\\test\\java\\drivers\\chromedriver_win32\\chromedriver.exe");
+				"D:\\Softwares\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		// To maximize browser
 		driver.manage().window().maximize();
 		// Implicit wait
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// To open facebook
-		driver.get("http://www.demo.i2ifunding.com/");
+		driver.get("https://www.stagingi2i.com/");
 	}
 
-	@AfterSuite
+	@AfterMethod
 	public void closeBrowser() {
-		// driver.manage().deleteAllCookies();
-		// LaunchBrowser.driver.close();
+		 driver.manage().deleteAllCookies();
+		 driver.close();
 	}
+	
+	
+	
 
 	// Method to generate random mobilenumber
 	public static Integer mobileNumber() {
@@ -69,12 +72,20 @@ public class LaunchBrowser {
 		String rEmail = "BDJPG" + randomInt + "L";
 		return (rEmail);
 	}
+	
+	public void explicitWaitUnitlElementNotVisible(WebElement element_location1) {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(element_location1));
+	}
 
-//	public void login(String emailID, String password) throws InterruptedException {
-//		loginPage lp = new loginPage(driver);
-//		lp.enterEmail(emailID);
-//		lp.enterPwd(password);
-//		lp.clickLoginBtn();
-//	}
+	public void explicitWaitUntilElementNotClickable(WebElement element_location2) {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(element_location2));
+	}
+
+	public void explicitWaitUnitlElementNotInvisible(WebElement element_location3) {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.invisibilityOf(element_location3));
+	}
 
 }

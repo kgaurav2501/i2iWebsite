@@ -1,24 +1,36 @@
 package com.web.testCases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.util.LaunchBrowser;
-import com.web.testPages.BorrowerEducationDetails;
+import com.web.testPages.BorrowerDocumentsPage;
+import com.web.testPages.BorrowerEducationDetailsPage;
+import com.web.testPages.LoginPage;
 
-@Test
+
 public class BorrowerEducationDetailsTest extends LaunchBrowser {
 
 	public void enterValidEducationDetails() throws InterruptedException {
 
-		 BorrowerEmploymentDetailsTest b = new BorrowerEmploymentDetailsTest();
-		 b.enterValidEmpDetails();
+		BorrowerEmploymentDetailsTest b = new BorrowerEmploymentDetailsTest();
+		b.enterValidEmpDetails();
 		// Education Details
-		BorrowerEducationDetails ed = new BorrowerEducationDetails(driver);
+		BorrowerEducationDetailsPage ed = new BorrowerEducationDetailsPage(driver);
 		Thread.sleep(2000);
-		System.out.println(driver.getCurrentUrl());
 		ed.enterEducationDetails("BE", "Annamalai", "Mech", "2014");
-		
 
+	}
+	
+	@Test
+	public void checkRedirectionToDocuments() throws InterruptedException {
+		enterValidEducationDetails();
+		LoginPage l = new LoginPage(driver);
+		l.reLogin();
+		Thread.sleep(2000);
+		l.clickOnContinueBtn();
+		BorrowerDocumentsPage bdp = new BorrowerDocumentsPage(driver);
+		Assert.assertEquals(bdp.getDocPageTitle(), "Document Details Salaried", "Not redirected to Document Details Salaried");
 	}
 
 }

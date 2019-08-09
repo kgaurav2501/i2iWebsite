@@ -54,11 +54,16 @@ public class BorrowerEmploymentDetailsPage {
 	// Next Btn
 	By nextBtn = By.xpath(
 			"/html/body/app-root/div/app-borrower-registration/section/div/div/div/div/div/div[2]/div[4]/button[3]");
+	
+	// Next Btn
+		By titleofEduDetails = By.xpath(
+				"/html/body/app-root/div/app-borrower-registration/section/div/div/div/div/div/div[1]/h1");
+		
 
 	// ------------------------------------------------ActionMethods-------------------------------------------------
 
 	public void enterEmploymentDetails(String current_org_designation, String org_email, String org_address,
-			String org_pin, String org_phone_code, String org_phone_number) {
+			String org_pin, String org_phone_code, String org_phone_number) throws InterruptedException {
 		
 		driver.findElement(currentOrgDesignation).sendKeys(current_org_designation);
 		driver.findElement(officialEmail).sendKeys(org_email);
@@ -66,8 +71,13 @@ public class BorrowerEmploymentDetailsPage {
 		driver.findElement(officePin).sendKeys(org_pin);
 		driver.findElement(officeCode).sendKeys(org_phone_code);
 		driver.findElement(officePhone).sendKeys(org_phone_number);
+		Thread.sleep(2000);
 		driver.findElement(nextBtn).click();
 
+	}
+	public String titleOfEduDetailsPage() {
+		
+		return driver.findElement(titleofEduDetails).getText();
 	}
 
 }

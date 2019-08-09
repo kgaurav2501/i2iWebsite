@@ -1,29 +1,28 @@
 package com.web.testCases;
 
 import org.testng.annotations.Test;
-
 import com.util.LaunchBrowser;
 import com.util.SavedData;
 import com.web.testPages.IndividualInvestorBasicRegPage;
 
 public class IndividualInvestorBasicRegTest extends LaunchBrowser {
 
-	SavedData save = new SavedData();
+	public static SavedData save = new SavedData();
 	@Test
-	void checkValidSignUp() throws InterruptedException {
+	public void enterIndividualInvestorBasicDetails() throws InterruptedException {
 		IndividualInvestorBasicRegPage iibrp = new IndividualInvestorBasicRegPage(driver);
 		iibrp.clickOnSignupBtn();
 		iibrp.clickOnInvestorIcon();
 		Thread.sleep(2000);
 		iibrp.selectInvestorOption();
 		Thread.sleep(2000);
-		iibrp.enterFirstName("inavf");
-		iibrp.enterMiddleName("hdh");
-		iibrp.enterLastName("last");
+		iibrp.enterFirstName("Stage");
+		iibrp.enterMiddleName("");
+		iibrp.enterLastName("In");
 		iibrp.selectMaleBtn();
 		iibrp.enterAddharNum(aadhaarNumber().toString());
 		iibrp.enterPanNum(rPanNum());
-		iibrp.enterEmail(randomEmailID());
+		iibrp.enterEmail("in@gmail.com");
 		System.out.println(iibrp.getEmail());
 		iibrp.enterPassword("Test@123");
 		iibrp.enterRepassword("Test@123");
@@ -38,12 +37,11 @@ public class IndividualInvestorBasicRegTest extends LaunchBrowser {
 		iibrp.clickOnTermsConditions();
 		iibrp.clickOnPrivacyPolicy();
 		iibrp.clickOnSubmitBtn();
-		iibrp.enterCouponCode("fee100");
-		iibrp.clickOnApplyNowBtn();
-		Thread.sleep(2000);
-		iibrp.clickOnFeeSubmitBtn();
+		
 		// assertEquals(iibrp.getTitle(), "Register as Individual Investor");
 		System.out.println("Redirected to Register as Individual Investor page");
 	}
+	
+	
 
 }

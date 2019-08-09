@@ -150,7 +150,7 @@ public class BorrowerLoanEligibilityPage {
 	}
 
 	// Enter personal details.
-	public void enetrPersonalDetails(String marital_status, String pin_Code) {
+	public void enetrPersonalDetails(String marital_status, String pin_Code) throws InterruptedException {
 		if (marital_status.equals("Single")) {
 			singleRadiobtn.click();
 		}
@@ -170,6 +170,7 @@ public class BorrowerLoanEligibilityPage {
 		driver.findElement(By.xpath(
 				"/html/body/app-root/div/app-borrower-registration/section/div/div/div/div/div/div/app-checkeligibility/div[2]/div[4]/div[2]/my-date-picker/div/div[2]/table[2]/tbody/tr[2]/td[2]"))
 				.click();
+		Thread.sleep(2000);
 		pinCode.sendKeys(pin_Code);
 
 	}
@@ -302,10 +303,16 @@ public class BorrowerLoanEligibilityPage {
 
 		gm.scroll(driver);
 		Thread.sleep(2000);
-//		cibil.sendKeys(CIBIL);
+
+		//cibil.sendKeys(CIBIL);
 		checkEligibilityBtn.click();
-		gm.ExplicitWaitVisible(eligibilityStatus, driver);
+		gm.explicitWaitUnitlElementNotVisible(eligibilityStatus);
 		System.out.println("Success Loan Eligiblity redirect to: " + eligibilityStatus.getText());
+	}
+	
+	public void clickOnProceedBtn() {
+		gm.explicitWaitUnitlElementNotVisible(proceedBtn);
+		proceedBtn.click();
 	}
 
 }

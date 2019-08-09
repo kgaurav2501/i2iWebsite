@@ -37,10 +37,9 @@ public class Institution_InvestorUserDetailsPage {
 	@FindBy(xpath = "/html/body/app-root/div/ng-component/section/div/div/div/div/div/div[2]/div[3]/button[2]")
 	WebElement nextBtn;
 
-//	@FindBy(xpath = "")
-//	WebElement
 
-	public void institutionUserDetails(String frim_type, String gst_num, String frim_address, String pin_code) throws InterruptedException {
+	public void institutionUserDetails(String frim_type, String gst_num, String frim_address, String pin_code)
+			throws InterruptedException {
 		firmType.click();
 		Select select = new Select(firmType);
 		select.selectByVisibleText(frim_type);
@@ -68,4 +67,5 @@ public class Institution_InvestorUserDetailsPage {
 
 	}
 
+	
 }
