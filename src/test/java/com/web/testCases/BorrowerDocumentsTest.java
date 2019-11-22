@@ -1,5 +1,9 @@
 package com.web.testCases;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,7 +19,6 @@ import com.web.testPages.PaymentPage;
 import com.web.testPages.RefferedPage;
 
 public class BorrowerDocumentsTest extends LaunchBrowser {
-
 	@Test
 	public void uploadDoc() throws InterruptedException {
 
@@ -23,8 +26,8 @@ public class BorrowerDocumentsTest extends LaunchBrowser {
 		BorrowerBasicRegistrationPage a = new BorrowerBasicRegistrationPage(driver);
 		a.clickOnSignupBtn();
 		a.clickOnBorrowerOpt();
-		a.enterBorrowerBasicDetails("Cat", "", "D", "Male", aadhaarNumber().toString(), rPanNum(),
-				"catd@gmail.com", "Test@123", "Test@123", mobileNumber().toString());
+		a.enterBorrowerBasicDetails("loan", "Loan", "Two", "Male", aadhaarNumber().toString(), rPanNum(),
+				"gx@gmail.com", "Test@123", "Test@123", mobileNumber().toString());
 
 		// Select reffered by YES / NO option.
 		RefferedPage b = new RefferedPage(driver);
@@ -63,27 +66,27 @@ public class BorrowerDocumentsTest extends LaunchBrowser {
 		g.uploadDoc("Electricity Bill", "Voter ID");
 		LoginPage login = new LoginPage(driver);
 		// Login with registered user.
-		//login.clickOnContinueBtn();
+		// login.clickOnContinueBtn();
 		Thread.sleep(2000);
 		login.clickSignIn();
 		login.login(BorrowerBasicRegistrationPage.save.getEmail(), "Test@123");
 	}
 
-	//@Test
+	// @Test
 	public void afterBasicSignUpRedirectedToRefferelPage() throws InterruptedException {
 		// Basic Registration
 		BorrowerBasicRegistrationPage a = new BorrowerBasicRegistrationPage(driver);
 		a.clickOnSignupBtn();
 		a.clickOnBorrowerOpt();
-		a.enterBorrowerBasicDetails("Kumar", "", "Gaurav", "Male", aadhaarNumber().toString(), rPanNum(),
-				randomEmailID(), "Test@123", "Test@123", mobileNumber().toString());
+		a.enterBorrowerBasicDetails("Group", "", "One", "Male", aadhaarNumber().toString(), rPanNum(), randomEmailID(),
+				"Test@123", "Test@123", mobileNumber().toString());
 
 		Assert.assertEquals(a.getLoanEligibilityTitle(), "Check Loan Eligibility",
 				"Failed:-Not redirected to Check Loan Eligibility page");
 		System.out.println("Basic SignUp Successful Redirected to:" + a.getLoanEligibilityTitle());
 
 		// Logout
-	//	a.logOut();
+		// a.logOut();
 
 		// loginAgain
 		a.clickOnSignInBtn();

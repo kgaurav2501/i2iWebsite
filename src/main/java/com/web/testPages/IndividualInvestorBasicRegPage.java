@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.util.SavedData;
+
 public class IndividualInvestorBasicRegPage {
 
 	WebDriver driver;
@@ -109,10 +111,11 @@ public class IndividualInvestorBasicRegPage {
 
 	public void enterBasicDetailsOfIndividualInvestor(String first_name, String middle_name, String last_name,
 			String aadhar_num, String pan_num, String email_id, String pass_word, String re_password,
-			String mobile_num) {
-		
+			String mobile_num) throws InterruptedException {
+		SavedData save = new SavedData();
 		signup_buttom.click();
 		investorIcon.click();
+		Thread.sleep(2000);
 		selectIndividualInvestorOpt.click();
 		firstName.sendKeys(first_name);
 		middleName.sendKeys(middle_name);
@@ -124,19 +127,22 @@ public class IndividualInvestorBasicRegPage {
 		password.sendKeys(pass_word);
 		rePassword.sendKeys(re_password);
 		mobileNum.sendKeys(mobile_num);
-		sendOTPbtn.click();
-		mobileOTP.sendKeys(OTPofMobile.getText());
-		emailOTP.sendKeys(email.getAttribute("value"));
-		Actions actions = new Actions(driver);
-		actions.moveToElement(termsConditions).click().perform();
-		privicyPolicy.click();
-		submitBtn.click();
+		save.setEmail(getEmail());
+		save.setpass(getPass());
+		Thread.sleep(2000);
+		clickOnSendOTPBtn();
+		Thread.sleep(2000);
+		enterEmailOTP(getEmailOTP());
+		enterMobileOTP(getMobileOTP());
+		clickOnTermsConditions();
+		clickOnPrivacyPolicy();
+		clickOnSubmitBtn();
 
 	}
 
 	// To click on signup Button
 	public void clickOnSignupBtn() {
-		
+
 		signup_buttom.click();
 	}
 

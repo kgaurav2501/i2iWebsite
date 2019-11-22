@@ -10,17 +10,14 @@ public class IndividualInvestorKYCDocumentsTest extends LaunchBrowser {
 	@Test
 	public void redirectionToBankAccountPage() throws InterruptedException {
 		enterKycDetails();
-		//Assert.assertEquals(actual, expected);
+		// Assert.assertEquals(actual, expected);
 	}
-	
-	
-	
-	
-	public void enterKycDetails() throws InterruptedException {	
-	IndividualInvestorEmploymentDetailsTest ii = new IndividualInvestorEmploymentDetailsTest();
-	ii.enterEmploymentDetails();
-	IndividualInvestorKYCDocumentsPage kk = new IndividualInvestorKYCDocumentsPage(driver);
-	kk.kycDoc("Driving Licence");
+
+	public void enterKycDetails() throws InterruptedException {
+		IndividualInvestorEmploymentDetailsTest ii = new IndividualInvestorEmploymentDetailsTest();
+		ii.enterEmploymentDetails();
+		IndividualInvestorKYCDocumentsPage kk = new IndividualInvestorKYCDocumentsPage(driver);
+		kk.kycDoc("Driving Licence");
 
 	}
 }
