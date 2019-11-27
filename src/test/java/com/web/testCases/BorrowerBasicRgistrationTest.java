@@ -9,14 +9,13 @@ import com.web.testPages.BorrowerBasicRegistrationPage;
 import com.web.testPages.LoginPage;
 
 public class BorrowerBasicRgistrationTest extends LaunchBrowser {
-
-	// @Test(priority = 1)
+	
+	@Test(priority = 1)
 	public void fieldValidation() throws InterruptedException {
 		BorrowerBasicRegistrationPage bp = new BorrowerBasicRegistrationPage(driver);
 		bp.clickOnSignupBtn();
 		bp.clickOnBorrowerOpt();
 		SoftAssert sa = new SoftAssert();
-
 		// First Name Validation test
 		bp.enterFirstName("!@#$%^&*()_-");
 		sa.assertEquals(bp.getFirstNameErrorMsg(), "Please enter first name.", "First msg message diplay");
