@@ -1,6 +1,7 @@
 package com.web.testCases;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,18 +9,22 @@ import com.util.LaunchBrowser;
 import com.web.testPages.BorrowerBasicRegistrationPage;
 import com.web.testPages.LoginPage;
 
+@Listeners(com.util.Listeners.class)
+@Test
 public class BorrowerBasicRgistrationTest extends LaunchBrowser {
-	
-	@Test(priority = 1)
+
 	public void fieldValidation() throws InterruptedException {
 		BorrowerBasicRegistrationPage bp = new BorrowerBasicRegistrationPage(driver);
 		bp.clickOnSignupBtn();
 		bp.clickOnBorrowerOpt();
 		SoftAssert sa = new SoftAssert();
+
 		// First Name Validation test
 		bp.enterFirstName("!@#$%^&*()_-");
-		sa.assertEquals(bp.getFirstNameErrorMsg(), "Please enter first name.", "First msg message diplay");
-		sa.assertEquals(bp.getFirstName(), "", "First name Invalid");
+		Assert.assertEquals("kjhlkj", bp.getFirstNameErrorMsg());
+
+//		sa.assertEquals(bp.getFirstNameErrorMsg(), "Please enter first name.", "First msg message diplay");
+//		sa.assertEquals(bp.getFirstName(), "", "First name Invalid");
 
 		// Middle Name Validation test
 		bp.enterMiddleName("1!@#$%^&*()_");
@@ -73,7 +78,7 @@ public class BorrowerBasicRgistrationTest extends LaunchBrowser {
 		System.out.println("Basic SignUp Successful Redirected to:" + bp.getLoanEligibilityTitle());
 	}
 
-	@Test
+	// @Test
 	// Religion and check redirecting to Check Eligibility Page.
 	public void reDirectionToEligibilityPage() throws InterruptedException {
 		BorrowerBasicRegistrationPage bp = new BorrowerBasicRegistrationPage(driver);
