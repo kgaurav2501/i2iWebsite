@@ -33,5 +33,4 @@ public class GenericMethods {
 //	.withTimeout(30, TimeUnit.SECONDS) 			
 //	.pollingEvery(, TimeUnit.MILLISECONDS) 			
 //	.ignoring(NoSuchElementException.class);
-
 }
